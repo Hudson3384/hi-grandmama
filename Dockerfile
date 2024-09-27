@@ -5,7 +5,6 @@ RUN apt-get update && apt-get install -y \
     libnss3
 
 USER root
-
 RUN rm /etc/localtime
 RUN ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN echo "America/Sao_Paulo" > /etc/timezone

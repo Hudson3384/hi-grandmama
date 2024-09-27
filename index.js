@@ -1,6 +1,10 @@
 const { Client, LocalAuth } = require("whatsapp-web.js");
 const schedule = require("node-schedule");
 const qrcode = require("qrcode-terminal");
+var moment = require("moment-timezone");
+
+moment().tz("America/Sao_Paulo").format();
+
 const wwebVersion = "2.2412.54";
 
 const client = new Client({
@@ -47,7 +51,7 @@ client.on("ready", () => {
   console.log("Client is ready!");
 
   schedule.scheduleJob("0 30 8 * * *", () => {
-    console.log("Sending message at 8:30am");
+    console.log("Sending message at 8:30am at", process.env.GRANDMANUMBER);
     client.sendMessage(
       `${process.env.GRANDMANUMBER}@c.us`,
       `${cuteMessages["morning"]}${emojiSorted()}`
@@ -55,7 +59,7 @@ client.on("ready", () => {
   });
 
   schedule.scheduleJob("0 00 12 * * *", () => {
-    console.log("Sending message at 12:00pm");
+    console.log("Sending message at 12:00pm", process.env.GRANDMANUMBER);
     client.sendMessage(
       `${process.env.GRANDMANUMBER}@c.us`,
       `${cuteMessages["afternoon"]}${emojiSorted()}`
@@ -63,7 +67,7 @@ client.on("ready", () => {
   });
 
   schedule.scheduleJob("0 0 18 * * *", () => {
-    console.log("Sending message at 18:00pm");
+    console.log("Sending message at 18:00pm", process.env.GRANDMANUMBER);
     client.sendMessage(
       `${process.env.GRANDMANUMBER}@c.us`,
       `${cuteMessages["night"]}${emojiSorted()}`
